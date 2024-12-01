@@ -31,9 +31,9 @@ def analyze_time_complexity(func: Callable, input_generator: Callable[[int], any
     for size in sizes:
         size_times = []
         for _ in range(num_trials):
-            input_data = input_generator(size)
+            input_data = tuple(input_generator(size))
             start_time = time.time()
-            func(input_data)
+            func(*input_data)
             end_time = time.time()
             size_times.append(end_time - start_time)
         times.append(np.mean(size_times))
